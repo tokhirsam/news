@@ -49,14 +49,14 @@ public class CommentController {
     }
 
     @PreAuthorize(value = "hasAuthority('DELETE_COMMENT')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/byEditor/{id}")
     public HttpEntity<?> deleteCommentByEditor(@PathVariable Long id){
         ApiResponse response = service.deleteCommentByEditor(id);
         return ResponseEntity.status(response.isSuccess()?202:409).body(response);
     }
 
     @PreAuthorize(value = "hasAuthority('DELETE_MY_COMMENT')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/byUser/{id}")
     public HttpEntity<?> deleteCommentByUser(@PathVariable Long id){
         ApiResponse response = service.deleteCommentByUser(id);
         return ResponseEntity.status(response.isSuccess()?202:409).body(response);
